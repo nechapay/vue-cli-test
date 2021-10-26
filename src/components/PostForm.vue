@@ -2,7 +2,7 @@
   <div>
     <form @submit.prevent class="form">
       <h3>Add post</h3>
-      <my-input type="text" v-model="post.title" placeholder="post title" />
+      <my-input v-focus type="text" v-model="post.title" placeholder="post title" />
       <my-input class="input" type="text" v-model="post.body" placeholder="post body" />
       <my-button class="btn" @click="addPost">Add</my-button>
     </form>

@@ -1,66 +1,18 @@
 <template>
+  <navbar />
   <div class="app">
-    <div class="app__content">
-      <h1>Posts page</h1>
-      <div class="app__btns">
-        <my-button @click="showDialog">Add posts</my-button>
-        <my-select v-model="selectedSort" :options="sortOptions" />
-      </div>
-      <my-dialog v-model:show="dialogVisible"><post-form @create="addPost" /></my-dialog>
-      <posts-list :posts="posts" @remove="removePost" v-if="!isPostsLoading" />
-      <div v-else><h4>Loading...</h4></div>
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import PostForm from './components/PostForm.vue'
-import PostsList from './components/PostsList.vue'
-import axios from 'axios'
-
+import Navbar from '@/components/Navbar.vue'
 export default {
-  components: { PostForm, PostsList },
-  data() {
-    return {
-      posts: [],
-      dialogVisible: false,
-      isPostsLoading: false,
-      selectedSort: '',
-      sortOptions: [
-        { value: 'title', name: 'by title' },
-        { value: 'body', name: 'by body' }
-      ]
-    }
-  },
-  mounted() {
-    this.fetchPosts()
-  },
-  methods: {
-    addPost(post) {
-      this.posts.push(post)
-      this.dialogVisible = false
-    },
-    removePost(post) {
-      this.posts = this.posts.filter((item) => item.id !== post.id)
-    },
-    showDialog() {
-      this.dialogVisible = true
-    },
-    async fetchPosts() {
-      try {
-        this.isPostsLoading = true
-        const res = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10')
-        this.posts = res.data
-        this.isPostsLoading = false
-      } catch (error) {
-        console.log(error.message)
-      }
-    }
-  }
+  components: { Navbar }
 }
 </script>
 
-<style scoped>
+<style>
 * {
   margin: 0;
   padding: 0;
@@ -82,8 +34,28 @@ export default {
 }
 
 .app__btns {
-  margin: 15px;
+  margin: 15px 0;
   display: flex;
   justify-content: space-between;
+}
+
+.page__wrapper {
+  display: flex;
+  margin-top: 15px;
+}
+
+.page {
+  border: 1px solid black;
+  padding: 10px;
+  margin-right: 1px;
+  cursor: pointer;
+}
+
+.current-page {
+  border: 2px solid teal;
+}
+
+.observer {
+  height: 30px;
 }
 </style>

@@ -1,10 +1,12 @@
 <template>
   <div class="post">
     <div>
+      {{ post.id }}
       <div><strong>Title: </strong>{{ post.title }}</div>
       <div><strong>Body: </strong> {{ post.body }}</div>
     </div>
     <div class="post__btns">
+      <my-button @click="$router.push(`/posts/${post.id}`)">View</my-button>
       <my-button @click="delPost">Delete</my-button>
     </div>
   </div>
@@ -21,6 +23,9 @@ export default {
   methods: {
     delPost() {
       this.$emit('remove', this.post)
+    },
+    viewPost() {
+      this.$emit('view', this.post)
     }
   }
 }
@@ -35,5 +40,9 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.post__btns {
+  display: flex;
+  align-items: center;
 }
 </style>
