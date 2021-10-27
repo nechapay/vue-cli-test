@@ -50,7 +50,7 @@ export const postModule = {
     async fetchPosts({ state, commit }) {
       try {
         commit('setLoading', true)
-        const res = await axios.get('http://jsonplaceholder.typicode.com/posts', {
+        const res = await axios.get('https://jsonplaceholder.typicode.com/posts', {
           params: {
             _page: state.page,
             _limit: state.limit
@@ -66,7 +66,7 @@ export const postModule = {
     async loadMorePosts({ state, commit }) {
       try {
         commit('setPage', state.page + 1)
-        const res = await axios.get('http://jsonplaceholder.typicode.com/posts', {
+        const res = await axios.get('https://jsonplaceholder.typicode.com/posts', {
           params: {
             _page: state.page,
             _limit: state.limit

@@ -86,7 +86,7 @@ export default {
     async fetchPosts() {
       try {
         this.isPostsLoading = true
-        const res = await axios.get('http://jsonplaceholder.typicode.com/posts', {
+        const res = await axios.get('https://jsonplaceholder.typicode.com/posts', {
           params: {
             _page: this.page,
             _limit: this.limit
@@ -102,7 +102,7 @@ export default {
     async loadMorePosts() {
       try {
         this.page++
-        const res = await axios.get('http://jsonplaceholder.typicode.com/posts', {
+        const res = await axios.get('https://jsonplaceholder.typicode.com/posts', {
           params: {
             _page: this.page,
             _limit: this.limit

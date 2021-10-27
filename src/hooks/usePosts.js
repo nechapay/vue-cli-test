@@ -7,7 +7,7 @@ export default function usePosts(limit) {
   const isPostsLoading = ref(true)
   const fetching = async () => {
     try {
-      const res = await axios.get('http://jsonplaceholder.typicode.com/posts', {
+      const res = await axios.get('https://jsonplaceholder.typicode.com/posts', {
         params: {
           _page: 1,
           _limit: limit
