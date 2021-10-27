@@ -7,7 +7,7 @@
       <my-select v-model="selectedSort" :options="sortOptions" />
     </div>
     <my-dialog v-model:show="dialogVisible"><post-form @create="addPost" /></my-dialog>
-    <posts-list :posts="sortedAndSerchedPosts" @remove="removePost" v-if="!isPostsLoading" />
+    <posts-list :posts="sortedAndSearchedPosts" @remove="removePost" v-if="!isPostsLoading" />
     <div v-else><h4>Loading...</h4></div>
     <div v-intersection="loadMorePosts" class="observer"></div>
     <!-- <div class="page__wrapper">
@@ -56,7 +56,7 @@ export default {
         return post1[this.selectedSort]?.localeCompare(post2[this.selectedSort])
       })
     },
-    sortedAndSerchedPosts() {
+    sortedAndSearchedPosts() {
       return this.sortedPosts.filter((post) =>
         post.title.toLocaleLowerCase().includes(this.searchQuery.toLocaleLowerCase())
       )
